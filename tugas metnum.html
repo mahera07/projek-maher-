@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Iterasi Metode Regula Falsi</title>
+    <style>
+        body {
+            font-family: Algerian, sans-serif;
+            margin: 20px;
+            position: relative;
+            background-color: #FFFDD0; /* Warna krem */
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            flex: 1;
+            margin-right: 15px;
+        }
+        .input-group:last-child {
+            margin-right: 0;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            border-radius: 4px;
+            background-color: #e9f7fe;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .group-members {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            border: 1px solid #28a745;
+            border-radius: 4px;
+            background-color: #e6f9ec;
+            width: calc(100% - 40px);
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+        .group-members ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .group-members li {
+            margin-bottom: 5px;
+        }
+        .formula {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            background-color: #fff3cd;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="group-members">
+        <h3>Anggota Kelompok</h3>
+        <ul>
+            <li>Mahera Sovie Putra (2201020140)</li>
+            <li>Adhitya Baby Pratama Pudi (2201020146)</li>
+            <li>Ahmad Zubet Al Muzakki (2101020052)</li>
+            <li>Bimantara Putra Lubis (2201020069)</li>
+            <li>Fauzan Hanif (2201020097)</li>
+        </ul>
+    </div>
+    <div class="container">
+        <h2>Perhitungan Iterasi Metode Regula Falsi</h2>
+        <div class="input-row">
+            <div class="input-group">
+                <label for="equation">Persamaan (gunakan 'x' sebagai variabel):</label>
+                <input type="text" id="equation" placeholder="Contoh: e^x - 1">
+            </div>
+            <div class="input-group">
+                <label for="lowerBound">Batas Bawah (a):</label>
+                <input type="number" id="lowerBound" step="any">
+            </div>
+            <div class="input-group">
+                <label for="upperBound">Batas Atas (b):</label>
+                <input type="number" id="upperBound" step="any">
+            </div>
+            <div class="input-group">
+                <label for="tolerance">Toleransi:</label>
+                <input type="number" id="tolerance" step="any">
+            </div>
+        </div>
+        <button onclick="calculateIteration()">Hitung</button>
+
+        <div class="result" id="result"></div>
+        <table id="iterationTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Iterasi</th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>akar</th>
+                    <th>f(akar)</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        function calculateIteration() {
+            const equationInput = document.getElementById('equation').value;
+            const lowerBound = parseFloat(document.getElementById('lowerBound').value);
+            const upperBound = parseFloat(document.getElementById('upperBound').value);
+            const tolerance = parseFloat(document.getElementById('tolerance').value);
+            const resultDiv = document.getElementById('result');
+            const table = document.getElementById('iterationTable');
+            const tbody = table.querySelector('tbody');
+
+            if (!equationInput || isNaN(lowerBound) || isNaN(upperBound) || isNaN(tolerance)) {
+                resultDiv.innerHTML = "Harap isi semua bidang dengan benar.";
+                table.style.display = "none";
+                return;
+            }
+
+            // Parsing equation (replace e^x with Math.exp(x) and ^ with **)
+            function parseEquation(equation) {
+                return equation
+                    .replace(/\be\^/g, 'Math.exp')  // Replace e^ with Math.exp
+                    .replace(/\^/g, '**')           // Replace ^ with ** for exponentiation
+                    .replace(/x/g, 'x');            // Ensure x is treated as a variable
+            }
+
+            // Function to evaluate the parsed equation
+            function evaluateEquation(equation, x) {
+                const parsedEquation = parseEquation(equation);
+                try {
+                    return Function('x', `return ${parsedEquation};`)(x);
+                } catch (error) {
+                    resultDiv.innerHTML = "Persamaan tidak valid. Gunakan format yang benar.";
+                    table.style.display = "none";
+                    return NaN; // Return NaN if the equation is invalid
+                }
+            }
+
+            let a = lowerBound;
+            let b = upperBound;
+            let root;
+            let iteration = 0;
+            tbody.innerHTML = "";
+
+            while (Math.abs(b - a) > tolerance) {
+                const fA = evaluateEquation(equationInput, a);
+                const fB = evaluateEquation(equationInput, b);
+
+                if (isNaN(fA) || isNaN(fB)) {
+                    resultDiv.innerHTML = "Kesalahan dalam evaluasi persamaan.";
+                    table.style.display = "none";
+                    return;
+                }
+
+                // Regula Falsi formula
+                root = (a * fB - b * fA) / (fB - fA);
+                const fRoot = evaluateEquation(equationInput, root);
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${iteration + 1}</td>
+                    <td>${a.toFixed(6)}</td>
+                    <td>${b.toFixed(6)}</td>
+                    <td>${root.toFixed(6)}</td>
+                    <td>${fRoot.toFixed(6)}</td>
+                `;
+                tbody.appendChild(row);
+
+                if (Math.abs(fRoot) < tolerance) break;
+
+                if (fA * fRoot < 0) {
+                    b = root;
+                } else {
+                    a = root;
+                }
+
+                iteration++;
+                if (iteration > 1000) {
+                    resultDiv.innerHTML = "Iterasi melebihi batas maksimum (1000).";
+                    table.style.display = "table";
+                    return;
+                }
+            }
+
+            resultDiv.innerHTML = `Hasil iterasi:<br>
+                Akar pendekatan: ${root.toFixed(6)}<br>
+                Iterasi: ${iteration}`;
+
+            table.style.display = "table";
+        }
+    </script>
+</body>
+</html>
