@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Resep - Resto Tepi Laut</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const resep = urlParams.get('resep');
+
+            const recipes = {
+                'grilled-salmon': {
+                    title: 'Grilled Salmon',
+                    image: 'foto.1.jpg',
+                    description: 'Salmon panggang dengan bumbu khas tepi laut.',
+                    ingredients: ['500g salmon', '2 sdm minyak zaitun', '1 sdm bawang putih cincang', 'Garam dan lada secukupnya'],
+                    steps: ['Panaskan panggangan.', 'Olesi salmon dengan minyak zaitun, bawang putih, garam, dan lada.', 'Panggang salmon selama 5-7 menit di setiap sisi atau hingga matang.']
+                },
+                'lobster-thermidor': {
+                    title: 'Lobster Thermidor',
+                    image: 'foto.2.jpeg',
+                    description: 'Lobster dengan saus thermidor yang lezat.',
+                    ingredients: ['1 ekor lobster', '100ml krim', '50g keju parmesan', '2 sdm mustard'],
+                    steps: ['Rebus lobster hingga matang.', 'Campur krim, keju, dan mustard.', 'Tuangkan saus di atas lobster dan panggang hingga keju meleleh.']
+                },
+                'seafood-platter': {
+                    title: 'Seafood Platter',
+                    image: 'foto.3.jpg',
+                    description: 'Platter lengkap dengan berbagai jenis seafood.',
+                    ingredients: ['200g udang', '200g kerang', '200g cumi', '2 sdm saus tartar'],
+                    steps: ['Rebus semua seafood hingga matang.', 'Susun seafood di atas platter dan sajikan dengan saus tartar.']
+                },
+                'kepiting-saus-padang': {
+                    title: 'Kepiting Saus Padang',
+                    image: 'foto.4.jpg',
+                    description: 'Kepiting dengan saus pedas khas Padang.',
+                    ingredients: ['2 ekor kepiting', '4 sdm saus padang', '2 sdm minyak goreng', '2 batang serai, memarkan'],
+                    steps: ['Panaskan minyak goreng dalam wajan.', 'Tumis serai hingga harum.', 'Masukkan kepiting dan saus padang, aduk hingga merata.', 'Masak hingga kepiting matang dan saus meresap.']
+                },
+                'gurita-bakar': {
+                    title: 'Gurita Bakar',
+                    image: 'foto.5.jpg',
+                    description: 'Gurita panggang dengan bumbu rempah.',
+                    ingredients: ['1 kg gurita', '3 sdm kecap manis', '2 sdm minyak zaitun', '3 siung bawang putih, cincang halus'],
+                    steps: ['Bersihkan gurita dan lumuri dengan campuran kecap manis, minyak zaitun, dan bawang putih.', 'Panggang gurita di atas bara api atau panggangan dengan api sedang hingga matang.', 'Sajikan gurita panggang dengan taburan bawang putih yang disangrai dan irisan lemon.']
+                },
+                'kakap-merah-bakar': {
+                    title: 'Kakap Merah Bakar',
+                    image: 'foto.6.jpg',
+                    description: 'Kakap merah panggang dengan bumbu khas.',
+                    ingredients: ['2 ekor kakap merah', '4 sdm kecap manis', '2 sdm minyak zaitun', '2 buah jeruk nipis, peras airnya'],
+                    steps: ['Bersihkan kakap merah dan lumuri dengan campuran kecap manis, minyak zaitun, dan air jeruk nipis.', 'Panggang kakap merah di atas panggangan dengan api sedang hingga matang.', 'Sajikan kakap merah panggang dengan nasi putih dan sayuran rebus.']
+                }
+                // Tambahkan lebih banyak resep sesuai kebutuhan
+            };
+
+            if (recipes[resep]) {
+                document.getElementById('recipe-title').textContent = recipes[resep].title;
+                document.getElementById('recipe-image').src = recipes[resep].image;
+                document.getElementById('recipe-description').textContent = recipes[resep].description;
+                document.getElementById('recipe-ingredients').innerHTML = recipes[resep].ingredients.map(ingredient => `<li>${ingredient}</li>`).join('');
+                document.getElementById('recipe-steps').innerHTML = recipes[resep].steps.map(step => `<li>${step}</li>`).join('');
+            }
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>_Resto Tepi Laut</h1>
+        <p>__Nikmati Hidangan Laut Terbaik</p>
+        <nav>
+            <ul>
+                <li><a href="beranda.html">Beranda</a></li>
+                <li><a href="Menu.html">Menu</a></li>
+                <li><a href="resep.html">Resep</a></li>
+                <li><a href="Reservasi.html">Reservasi</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="recipe-detail">
+            <h2 id="recipe-title">Judul Resep</h2>
+            <img id="recipe-image" src="" alt="Gambar Makanan">
+            <p id="recipe-description">Deskripsi Resep</p>
+            <h3>Bahan-bahan:</h3>
+            <ul id="recipe-ingredients">
+                <!-- Daftar bahan akan dimasukkan oleh JavaScript -->
+            </ul>
+            <h3>Langkah-langkah:</h3>
+            <ol id="recipe-steps">
+                <!-- Daftar langkah akan dimasukkan oleh JavaScript -->
+            </ol>
+        </div>
+    </main>
+    

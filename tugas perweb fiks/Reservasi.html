@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi - Resto Tepi Laut</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>_Resto Tepi Laut</h1>
+        <p>__Nikmati Hidangan Laut Terbaik</p>
+        <nav>
+            <ul>
+                <li><a href="beranda.html">Beranda</a></li>
+                <li><a href="Menu.html">Menu</a></li>
+                <li><a href="Resep.html">Resep</a></li>
+                <li><a href="reservasi.html">Reservasi</a></li>
+                <li><a href="kontak.html">Kontak</a></li>
+                <li><a href="tentang.html">Tentang Kami</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="reservasi">
+            <h2>Form Reservasi</h2>
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="name">Nama:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="people">Jumlah Orang:</label>
+                    <input type="number" id="people" name="people" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Tanggal:</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Jam:</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor HP:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <button type="submit">Buat Pesanan</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Resto Tepi Laut. All Rights Reserved.</p>
+        <h3>Jl.hangtuah, Kota Tanjungpinag, Kepulauan Riau</h3>
+    </footer>
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'konfirmasi.html';
+        });
+    </script>
+</body>
+</html>

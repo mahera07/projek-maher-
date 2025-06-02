@@ -1,0 +1,384 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('bg.1.jpg'); /* Ganti dengan path gambar Anda */
+    background-size: cover; /* Memastikan gambar mencakup seluruh area */
+    background-position: center; /* Pusatkan gambar */
+    background-repeat: no-repeat; /* Jangan ulangi gambar */
+}
+
+header {
+    background-color: rgba(5, 10, 14, 0.8); /* Tambahkan transparansi agar terlihat di atas background */
+    color: rgb(224, 107, 28);
+    text-align: left;
+    padding: 1em 0;
+    font-family: algerian
+}
+
+header h1 {
+    margin: 0.5em 0;
+}
+
+header p {
+    margin: 0;
+    font-style: italic;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1;
+    display: flex;
+    justify-content: left;
+    background-color: rgb(251, 251, 251); /* Tambahkan transparansi */
+    font-family: Helvetica ;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+main {
+    padding: 2em;
+    background-color: rgba(236, 240, 241, 0.399); /* Tambahkan transparansi */
+    border-radius: 8px;
+    margin: 2em;
+}
+
+.highlight {
+    margin-bottom: 2em;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    width: 300px;
+    margin: 0 10px;
+    scroll-snap-align: start;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.carousel-item p {
+    margin: 0;
+    padding: 1em;
+}
+
+.testimonial {
+    background-color: rgb(255, 255, 255);
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* CSS untuk laman resep */
+.recipes {
+    display: flex;
+    flex-direction: column; /* Mengatur susunan vertikal */
+    align-items: center; /* Pusatkan daftar resep */
+}
+
+.recipe-item {
+    margin: 20px 0; /* Berikan ruang antara setiap resep */
+    width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-item img {
+    width: 100%;
+    height: 150px; /* Sesuaikan dengan kebutuhan Anda */
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.recipe-item h3, .recipe-item p {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+
+
+/* CSS untuk laman detail resep */
+.recipe-detail {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Tambahkan transparansi */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-detail img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.recipe-detail h2, .recipe-detail h3 {
+    text-align: center;
+}
+
+.recipe-detail h3 {
+    margin-top: 20px;
+}
+
+.recipe-detail ul, .recipe-detail ol {
+    padding-left: 20px;
+}
+
+.recipe-detail ul li, .recipe-detail ol li {
+    margin-bottom: 10px;
+}
+
+.recipe-detail ol {
+    list-style-type: decimal;
+}
+
+/* CSS untuk laman menu */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Menjadikan 3 kolom */
+    gap: 20px; /* Jarak antara item */
+}
+
+.menu-item {
+    background-color: rgba(255, 255, 255, 0.721);
+    width: 100%; /* Sesuaikan lebar sesuai dengan jumlah kolom */
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.menu-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.menu-item-details {
+    padding: 10px;
+}
+
+.menu-item-details h3 {
+    margin: 5px 0;
+}
+
+.menu-item-details p {
+    margin: 5px 0;
+}
+
+.menu-item-details span {
+    font-weight: bold;
+    color: #f77;
+}
+
+/* CSS untuk laman reservasi */
+#reservasi {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: rgba(236, 240, 241, 0.399); /* Tambahkan transparansi */
+    border-radius: 8px;
+}
+
+#reservasi h2 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 0.75em;
+    background-color: #e06b1c;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d05a1a;
+}
+
+/* CSS untuk laman konfirmasi */
+#konfirmasi {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: rgba(236, 240, 241, 0.399); /* Tambahkan transparansi */
+    border-radius: 8px;
+    text-align: center;
+}
+
+#konfirmasi h2 {
+    margin-bottom: 1em;
+}
+
+#konfirmasi p {
+    margin-bottom: 1.5em;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75em 1.5em;
+    background-color: #e06b1c;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.button:hover {
+    background-color: #d05a1a;
+}
+
+/* CSS untuk laman kontak */
+#kontak {
+    text-align: center;
+    padding: 2em;
+    background-color: rgba(236, 240, 241, 0.399); /* Tambahkan transparansi */
+    border-radius: 8px;
+    margin: 2em;
+}
+
+#kontak h2 {
+    margin-bottom: 1em;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.contact-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 150px;
+    padding: 1em;
+    transition: transform 0.3s;
+}
+
+.contact-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.5em;
+}
+
+.contact-item p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+
+.contact-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-item:hover {
+    transform: scale(1.05);
+}
+
+/* CSS untuk laman Tentang Kami */
+#tentang {
+    text-align: center;
+    padding: 2em;
+    background-color: rgba(236, 240, 241, 0.399); /* Tambahkan transparansi */
+    border-radius: 8px;
+    margin: 2em;
+}
+
+#tentang h2 {
+    margin-bottom: 1em;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-content {
+    max-width: 500px;
+    text-align: left;
+    background-color: white;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h3 {
+    margin-top: 0;
+}
+
+.about-content p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}
+
+
+
+
+
+footer {
+    background-color: rgba(44, 62, 80, 0.995); /* Tambahkan transparansi */
+    color: white;
+    text-align: center;
+    padding: 0,5em 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
